@@ -136,37 +136,33 @@ public class EmployeeBook {
             }
             employee.setSalary(employee.getSalary() + employee.getDepartment() / 100.0 * percent);
         }
+    }
 
-        public void printAll ( int department){
-            for (Employee employee : employees) {
-                if (department != employee.getDepartment()) {
-                    continue;
-                }
-                System.out.println(employee);
+    public void printAll(int department) {
+        for (Employee employee : employees) {
+            if (department != employee.getDepartment()) {
+                continue;
+            }
+            System.out.println(employee);
+        }
+    }
+
+    public void printAllWithSalaryMore(double salary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= salary) {
+                System.out.println(String.format("Сотрудник: %s, id = %s, Зарплата = %s",
+                        employee.getFullName(), employee.getId(), employee.getSalary()));
             }
         }
+    }
 
-        public void printAllWithSalaryMore ( double salary){
-            for (Employee employee : employees) {
-                if (employee.getSalary() >= salary) {
-                    System.out.println(String.format("Сотрудник: %s, id = %s, Зарплата = %s",
-                            employee.getFullName(), employee.getId(), employee.getSalary()));
-                }
-            }
-            public void printAllWithSalaryLess (salary) {
+    public void printAllWithSalaryLess(int salary) {
             for (Employee employee : employees) {
                 if (employee.getSalary() < salary) {
                     System.out.println(String.format("Сотрудник: %s, id = %s, Зарплата = %s",
                             employee.getFullName(), employee.getId(), employee.getSalary()));
                 }
-
             }
-
-
-        }
-
         }
 
     }
-
-}
