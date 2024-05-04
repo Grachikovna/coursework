@@ -13,7 +13,7 @@ public class EmployeeBook {
 
     }
 
-    public void delete(Long id) {
+    public void delete(long id) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getId() == id) {
                 employees[i] = null;
@@ -34,6 +34,9 @@ public class EmployeeBook {
     public double getSalarySum() {
         double sum = 0;
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             sum += employee.getSalary();
 
         }
@@ -62,11 +65,24 @@ public class EmployeeBook {
     }
 
     public double getAverageSalary() {
-        return getSalarySum() / employees.length;
+        int quantity = 0;
+        double salarySum = 0;
+        for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
+            quantity++;
+            salarySum += employee.getSalary();
+        }
+        return salarySum / quantity;
+
     }
 
     public void printAllNames() {
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             System.out.println(employee.getFullName());
         }
     }
@@ -74,6 +90,9 @@ public class EmployeeBook {
     //Повышенная сложность
     public void changeSalaryByPercent(int percent) {
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             double newSalary = employee.getSalary() + employee.getSalary() / 100.0 * percent;
             employee.setSalary(newSalary);
         }
@@ -82,17 +101,23 @@ public class EmployeeBook {
     public double getSalarySumma(int department) {
         double sum = 0;
         for (Employee employee : employees) {
-            if (department == employee.getDepartment()) {
+            if (employee == null) {
+                continue;
+            }
+            if (department != employee.getDepartment()) {
+                continue;
+            }
                 sum += employee.getSalary();
             }
-
-        }
         return sum;
     }
 
     public Employee getEmployeeWithMinSalary(int department) {
         Employee min = null;
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (department != employee.getDepartment()) {
                 continue;
             }
@@ -106,6 +131,9 @@ public class EmployeeBook {
     public Employee getEmployeeWithMaxSalary(int department) {
         Employee max = null;
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (department != employee.getDepartment()) {
                 continue;
             }
@@ -120,6 +148,9 @@ public class EmployeeBook {
         int quantity = 0;
         double salarySum = 0;
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (department != employee.getDepartment()) {
                 continue;
             }
@@ -131,6 +162,9 @@ public class EmployeeBook {
 
     public void changeSalaryByPercent(int percent, int department) {
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (department != employee.getDepartment()) {
                 continue;
             }
@@ -140,6 +174,9 @@ public class EmployeeBook {
 
     public void printAll(int department) {
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (department != employee.getDepartment()) {
                 continue;
             }
@@ -149,6 +186,9 @@ public class EmployeeBook {
 
     public void printAllWithSalaryMore(double salary) {
         for (Employee employee : employees) {
+            if (employee == null) {
+                continue;
+            }
             if (employee.getSalary() >= salary) {
                 System.out.println(String.format("Сотрудник: %s, id = %s, Зарплата = %s",
                         employee.getFullName(), employee.getId(), employee.getSalary()));
@@ -158,6 +198,9 @@ public class EmployeeBook {
 
     public void printAllWithSalaryLess(int salary) {
             for (Employee employee : employees) {
+                if (employee == null) {
+                    continue;
+                }
                 if (employee.getSalary() < salary) {
                     System.out.println(String.format("Сотрудник: %s, id = %s, Зарплата = %s",
                             employee.getFullName(), employee.getId(), employee.getSalary()));
